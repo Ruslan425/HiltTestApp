@@ -6,7 +6,7 @@ import ru.romazanov.hilttestapp.data.LogDao
 class LogAppRepository(
     private val dao: LogDao
 ) {
-    fun getAll(): List<Log> {
+    suspend fun getAll(): List<Log> {
         return dao.getAll()
     }
 

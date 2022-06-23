@@ -15,12 +15,13 @@ import java.util.*
 import javax.inject.Inject
 
 
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: LogAppRepository
 ) : ViewModel() {
 
-    var logList by mutableStateOf(listOf<Log>())
+    var list = listOf<Log>()
 
 
     private fun getTime(): String {
@@ -55,8 +56,7 @@ class MainViewModel @Inject constructor(
 
     fun getAll() {
         viewModelScope.launch {
-            logList = repository.getAll()
+            list = repository.getAll()
         }
     }
-
 }

@@ -11,19 +11,21 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import ru.romazanov.hilttestapp.MainViewModel
 
 @Composable
 fun LogScreen(
-    viewModel: MainViewModel = hiltViewModel()
+    viewModel: MainViewModel
 ) {
+    val list = viewModel.list
     Scaffold() {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(viewModel.logList) { item ->
-                Column(modifier = Modifier
-                    .padding(8.dp)
-                    .fillMaxWidth()) {
+            items(list) { item ->
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth()
+                ) {
                     Text(item.time)
                     Text(text = item.msg)
                 }

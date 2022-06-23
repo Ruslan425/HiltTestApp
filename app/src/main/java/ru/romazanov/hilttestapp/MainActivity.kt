@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -23,16 +24,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             HiltTestAppTheme {
                 val navHostController = rememberNavController()
+                val viewModel = hiltViewModel<MainViewModel>()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
                     NavHost(navController = navHostController, startDestination = Screen.FirstScreen.rout) {
                         composable(Screen.FirstScreen.rout) {
-                            FirstScreen(navHostController)
+                            FirstScreen(navHostController, viewModel)
                         }
                         composable(Screen.LogScreen.rout) {
-                            LogScreen()
+                            LogScreen(viewModel)
                         }
                     }
                 }

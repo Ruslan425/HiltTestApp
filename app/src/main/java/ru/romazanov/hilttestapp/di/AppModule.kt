@@ -15,7 +15,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
     @Provides
     @Singleton
     fun provideAppDatabase(app: Application): AppDatabase {
@@ -31,6 +30,5 @@ object AppModule {
     fun provideLogRepository(db: AppDatabase): LogAppRepository {
         return LogAppRepository(db.logDao)
     }
-
 
 }
